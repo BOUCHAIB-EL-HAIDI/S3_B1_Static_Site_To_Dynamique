@@ -1,9 +1,13 @@
 <?php 
-require __DIR__  . "/../functions.php";
 
-require __DIR__ . "/../Views/contact.view.php";
+$success = false;
+
 
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
+
+if (empty($name)) $errors[] = "Name is required.";
+if (empty($email)) $errors[] = "Email is required.";
+if (empty($message)) $errors[] = "Message is required.";
 
 $name = htmlspecialchars($_POST['name'] ?? '');
 
@@ -44,10 +48,12 @@ $contact = [
 
  
     $contacts[] = $contact;
-
+  
    
     file_put_contents($filePath, json_encode($contacts, JSON_PRETTY_PRINT));
 
+    $success = true;
+
 };
 
-
+require __DIR__ . "/../Views/contact.view.php";
