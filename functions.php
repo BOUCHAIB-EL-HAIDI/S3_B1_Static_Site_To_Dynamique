@@ -10,20 +10,46 @@ die();
 
 };
 
-$page = $_GET['page'] ?? 'home';
-
-$allowedpages = ['home','services','contact','about'];
+$uri = $_SERVER['REQUEST_URI'];
 
 
-function Router($page , $allowedpages){
 
-if(in_array($page , $allowedpages)) {
+$routes = [
 
-require __DIR__ . "/Controllers/{$page}.php";
+    
+    '/' => 'Controllers/home.php',
+    
+    '/about' => 'Controllers/about.php',
+    '/contact' => 'Controllers/contact.php',
+    '/services' => 'Controllers/services.php'
+];
+
+
+
+function routeToControllers($uri , $routes){
+
+
+if(array_key_exists($uri ,$routes)) {
+
+require $routes[$uri];
+
 
 }else {
 
-require __DIR__ . "/Views/404.php";
+   require "Views/404.php";
+}
 
 }
-};
+
+
+
+routeToControllers($uri , $routes);
+
+
+
+
+
+
+
+
+
