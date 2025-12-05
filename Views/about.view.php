@@ -1,4 +1,4 @@
-<?php require __DIR__ . "/../Partials/Header.php"; ?>   
+<?php require __DIR__ . "/../Partials/Header.php";?>   
   <section class="container mx-auto py-80">
     <h2 class="text-3xl font-bold mb-6 text-center"> propos de nous</h2>
     <p class="text-gray-700 text-lg leading-8 text-center max-w-3xl mx-auto">
